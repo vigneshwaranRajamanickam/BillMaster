@@ -8,13 +8,13 @@ export class AuthService {
 
   constructor() { }
 
-  signUp(email: string, password: string) {
-    const signUp = supabase.auth.signUp({ email, password });
+  signUp(form:any) {
+    const signUp = supabase.auth.signUp(form);
     return signUp;
   }
 
-  signIn(email:string,password:string){
-    const signIn =  supabase.auth.signInWithPassword({email,password});
+  signIn(form:any){
+    const signIn =  supabase.auth.signInWithPassword(form);
     return signIn;
   }
 }

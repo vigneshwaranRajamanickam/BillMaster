@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-card" #loginCard>
+    <h2 class="title">Welcome to BillMaster</h2>
+    <form [formGroup]="loginForm" class="   ">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label class="label">Username</mat-label>
+        <input matInput formControlName="username" style="padding-inline: 10px;" placeholder="Enter username">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label class="label">Password</mat-label>
+        <input matInput type="password" formControlName="password" style="padding-inline: 10px;" placeholder="Enter password">
+      </mat-form-field>
+      <div class="forgot_password_text" (click)="navigateTo('forgotpassword')">Forgot Password?</div>
+     <div class="full-width btn_submit">
+         <button mat-raised-button color="primary" class="full-width submit_btn" type="submit" (click)="onSubmit()">
+          @if(!loading){
+            <span> Login  </span>
+          }
+          @else if(loading) { 
+         <div class="main">
+             <span class="loader sm"></span>
+         </div>
+          }
+         </button>
+         <!-- <span>Or</span>
+         <button mat-raised-button color="primary" class="full-width"><img src="./assets/icons/google.svg" height="50px" width="50px">Google SigIn</button> -->
+     </div>
+     <div>Don't have an account?  <span class="forgot_password_text" (click)="navigateTo('signup')">Create Account</span></div>
+    </form>
+  </div>
+  @if(errorMessage){
+      <p style="color: red;">{{ errorMessage }}</p>
+  }
+</div>

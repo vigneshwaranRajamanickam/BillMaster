@@ -1,1 +1,47 @@
-<p>sign-up works!</p>
+<div class="signup-container">
+  <div class="inside-signup">
+    <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+      <h2>Create  Account</h2>
+  
+      <label>Email</label>
+        <input formControlName="email" type="email" placeholder="you@example.com" />
+        @if(signupForm.get('email')?.invalid && signupForm.get('email')?.touched){
+          <div class="error">
+            Valid email is required.
+          </div>
+        }
+  
+      <label>Password</label>
+      <input formControlName="password" type="password" placeholder="********" />
+      @if(signupForm.get('password')?.invalid && signupForm.get('password')?.touched){
+        <div class="error">
+          Password is required.
+        </div> 
+      }
+  
+      <label>Store Name</label>
+      <input formControlName="storeName" type="text" placeholder="My Store" />
+      @if(signupForm.get('storeName')?.invalid && signupForm.get('storeName')?.touched){
+        <div  class="error">
+          Store name is required.
+        </div>
+      }
+  
+      <label>Mobile Number (optional)</label>
+      <input formControlName="mobile" type="tel" placeholder="+91 9876543210" />
+  
+      <button type="submit" [disabled]="signupForm.invalid"> 
+        @if(!loader){
+          Sign Up
+        }
+        @else if(loader){
+          <div class="main">
+             <span class="loader sm"></span>
+         </div>
+        }
+      </button>
+       <div> Already have an account? <span (click)="navigate('login')" >Sign in here</span></div>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>
