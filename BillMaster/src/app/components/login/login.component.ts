@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+// import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { CommonService } from '../../services/common.service';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -42,17 +43,17 @@ export class LogInComponent {
 
   async onSubmit() {
     this.loading=true;
-  //   if (this.loginForm.valid) {
-  //      const { data, error } = await this.auth.signIn(this.loginForm.value);
-  //  console.log("data",data,"error",error)
-  //   if (error) {  
-  //     // this.errorMessage = error.message;
-  // }
-  //   } else {
-  //     this.router.navigate(['/dashboard']);
-  //   }
+    if (this.loginForm.valid) {
+       const { data, error } = await this.auth.signIn(this.loginForm.value);
+   console.log("data",data,"error",error)
+    if (error) {  
+      // this.errorMessage = error.message;
+  }
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
 
-  //   this.loading = false;
+    this.loading = false;
     }
     navigateTo(route:string){ 
         this.commonService.navigateTo(route)
